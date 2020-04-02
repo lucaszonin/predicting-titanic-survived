@@ -1,5 +1,4 @@
 import streamlit as st
-import webbrowser as wb
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -10,9 +9,12 @@ from sklearn.feature_selection import SelectFromModel
 def main():
     st.title('Você sobreviveria ao Titanic?')
     st.write('Modelo de classificação com RandomForest para prever sobrevivência ou morte de passageiros no Titanic')
+    st.subheader('Autor')
+    st.write('https://www.linkedin.com/in/lucas-z-86a319160/')
     st.write('')
-    if st.button('Linkedin - Lucas Zonin Soares'):
-        wb.open_new_tab('https://www.linkedin.com/in/lucas-z-86a319160/')
+    st.subheader('Agradecimentos')
+    st.write('Felipe Maia Polo que me deu algumas dicas:')
+    st.write('https://www.linkedin.com/in/felipemaiapolo/')
     st.write('')
 
     titanic_v1 = pd.read_csv('datasets/train.csv')
@@ -112,7 +114,7 @@ def main():
     X_train, X_test, y_train, y_test = train_test_split(x,y,test_size=0.2, random_state=30)
     model = RandomForestClassifier()
     model.fit(X_train, y_train)
-    model_randomForest = model.predict(X_test)
+    model_randomForest = model.predict_proba(X_test)
     #st.write(accuracy_score(y_test,model_randomForest))
 
     if st.button(label="Prever"):
@@ -134,9 +136,6 @@ def main():
         'Probabilidade de morrer:', pred[0,0] * 100
         'Probabilidade de sobreviver:', pred[0,1] * 100
 
-#        st.write(pred_result)
-
-        
 
 if __name__ == '__main__':
     main()
