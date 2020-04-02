@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble.forest import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 from sklearn.feature_selection import SelectFromModel
 
 def main():
@@ -124,14 +125,16 @@ def main():
         st.write('Classe da passagem :', classe)
 
         x_input = pd.DataFrame({'Pclass':classe_modelo,'Sex':sexo_modelo,'Age':idade_passenger,'Fare':valor_pago,'Embarked':embarked_modelo}, index=[0])
-        pred = model.predict(x_input)
-        if pred == 0:
-            pred_result = 'Morreu'
-        elif pred == 1:
-            pred_result = 'Sobreviveu'
+        new_model = RandomForestClassifier()
+        new_model.fit(X_train, y_train)
+        pred = new_model.predict_proba(x_input)
 
         st.title('Previsão:')
-        st.write(pred_result)
+        st.write('')
+        'Probabilidade de morrer:', pred[0,0] * 100
+        'Probabilidade de sobreviver:', pred[0,1] * 100
+
+#        st.write(pred_result)
 
         
 
