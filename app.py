@@ -10,7 +10,7 @@ def main():
     st.title('Você sobreviveria ao Titanic?')
     st.write('Modelo de classificação com RandomForest para prever sobrevivência ou morte de passageiros no Titanic')
     st.subheader('Autor')
-    st.write('https://www.linkedin.com/in/lucas-z-86a319160/')
+    st.write('hwww.linkedin.com/in/lucaszonin')
     st.write('')
     st.subheader('Agradecimentos')
     st.write('Felipe Maia Polo que me deu algumas dicas:')
